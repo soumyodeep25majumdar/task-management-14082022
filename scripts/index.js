@@ -23,9 +23,40 @@ const htmlTaskContent = ({id,title,description,type,url}) => `
         </div> 
         <div class="card-body">
             ${
-                url && `<img width="100%" src="${url}" alt="card image cap" class="card-image-top"`
+                url 
+                && 
+                `<img width="100%" src="${url}" alt="card image cap" class="card-image-top md-3 rounded-lg"/>`
             }
+            <h4 class="task__card__title">${title}</h4>
+            <p class="description trim-3-lines text-muted" data-gram_editor="flase">
+                &{description}
+            </p>
+            <div class="tags text-white d-flex flex-wrap">
+                <span class="badge bg-parimary m-1">${type}</span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="button" class="bt btn-outline-primary float-right" data-bs-toggle="modal" data-bs-target="#showTask"
+            >Open Task</button>
         </div>   
     </div>
 </div>
 `; 
+
+const htmlTaskModalContent = ({id, title, description,url,type}) =>{
+    const date = new Date(parseInt(id));
+    return `
+     <div id=${id}>
+        ${
+            url 
+            && 
+            `<img width="100%" src="${url}" alt="card image cap" class="img-fluid palce__holder__image mb-3"/>`
+        }
+        <strong class="text-sm text-muted">Created on ${date.toDateString()}</strong>
+        <h2 class="my-3">${title}</h2>
+        <p class="lead">
+        ${description}
+        </p>
+     </div>       
+    `
+}; 
